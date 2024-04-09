@@ -91,6 +91,32 @@ tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
 print("4"*50)
 
+# supervised_finetuning_trainer = SFTTrainer(
+#     base_model,
+#     train_dataset=train,
+#     eval_dataset=test,
+#     args=transformers.TrainingArguments(
+#         per_device_train_batch_size=1,
+#         gradient_accumulation_steps=4,
+#         learning_rate=2e-4,
+#         max_steps=5000,
+#         max_grad_norm=0.3,
+#         warmup_ratio=0.03,
+#         output_dir="Our_model",
+#         optim="paged_adamw_8bit",
+#         fp16=True,
+#         evaluation_strategy = "steps",
+#         eval_steps = 50,
+#         save_steps = 50,
+#         load_best_model_at_end=True,
+#         save_strategy='steps',
+#     ),
+#     tokenizer=tokenizer,
+#     peft_config=qlora_config,
+#     dataset_text_field="text",
+#     max_seq_length=2048  #4098
+# )
+
 supervised_finetuning_trainer = SFTTrainer(
     base_model,
     train_dataset=train,
@@ -99,22 +125,18 @@ supervised_finetuning_trainer = SFTTrainer(
         per_device_train_batch_size=1,
         gradient_accumulation_steps=4,
         learning_rate=2e-4,
-        max_steps=5000,
+        max_steps=1000,
         max_grad_norm=0.3,
         warmup_ratio=0.03,
         output_dir="Our_model",
         optim="paged_adamw_8bit",
         fp16=True,
-        evaluation_strategy = "steps",
-        eval_steps = 50,
-        save_steps = 50,
-        load_best_model_at_end=True,
-        save_strategy='steps',
     ),
     tokenizer=tokenizer,
     peft_config=qlora_config,
     dataset_text_field="text",
-    max_seq_length=2048  #4098
+    max_seq_length=4098
 )
+
 
 supervised_finetuning_trainer.train()
