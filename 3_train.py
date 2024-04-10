@@ -62,7 +62,7 @@ print("2"*50)
 model_id = "meta-llama/Llama-2-13b-hf"
 # model_id = "medalpaca/medalpaca-13b"
 
-model_id = "/home/zhan1386/shared/common_models/llama/Llama-2-7b-hf"
+# model_id = "/home/zhan1386/shared/common_models/llama/Llama-2-7b-hf"
 
 qlora_config = LoraConfig(
     r=64,
@@ -99,6 +99,7 @@ supervised_finetuning_trainer = SFTTrainer(
     eval_dataset=test,
     args=transformers.TrainingArguments(
         per_device_train_batch_size=1,
+	per_device_eval_batch_size=1,
         gradient_accumulation_steps=4,
         learning_rate=2e-4,
         max_steps=5000,
@@ -108,15 +109,15 @@ supervised_finetuning_trainer = SFTTrainer(
         optim="paged_adamw_8bit",
         fp16=True,
         evaluation_strategy = "steps",
-        eval_steps = 50,
-        save_steps = 50,
+        eval_steps = 500,
+        save_steps = 500,
         load_best_model_at_end=True,
         save_strategy='steps',
     ),
     tokenizer=tokenizer,
     peft_config=qlora_config,
     dataset_text_field="text",
-    max_seq_length=2048  #4098
+    max_seq_length=4098  #4098
 )
 
 # supervised_finetuning_trainer = SFTTrainer(
