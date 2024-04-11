@@ -18,7 +18,7 @@ save_file_name="DDI_llama_13b_test_inference_groundtruth_%s.json"%number_
 
 
 lora_weights="Our_model"+"/"+checkpoint  #FTOpenLM-just_ourdata   SFTOpenLM-with_ourdata_lolly   SFTOpenLM-Dolly15k
-
+print(lora_weights)
 
 # lora_config = LoraConfig.from_pretrained(saved_path)
 bnb_config = BitsAndBytesConfig(
@@ -29,9 +29,8 @@ bnb_config = BitsAndBytesConfig(
 )
 
 base_model="meta-llama/Llama-2-13b-hf"
-
-tokenizer=LlamaTokenizer.from_pretrained(lora_weights)  #, config=config, cache_dir="./llamacache"
-
+print(type(lora_weights))
+tokenizer=LlamaTokenizer.from_pretrained(base_model)  #, config=config, cache_dir="./llamacache"
 
 model = AutoModelForCausalLM.from_pretrained(
     base_model,
