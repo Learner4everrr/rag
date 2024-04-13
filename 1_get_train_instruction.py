@@ -8,7 +8,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
-parser.add_argument('--triver', type=str, default='facebook/contriever', help='retriver name')
+parser.add_argument('--triever', type=str, default='facebook/contriever', help='retriver name')
 args = parser.parse_args()
 
 trainfile = args.trainfile
