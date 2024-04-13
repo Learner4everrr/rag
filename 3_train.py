@@ -7,6 +7,12 @@ from transformers import LlamaTokenizer
 from trl import SFTTrainer
 from datasets import load_dataset
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--model', type=str, default='meta-llama/Llama-2-13b-hf', help='model_id')
+args = parser.parse_args()
+model_id = args.model
+
 print("1"*50)
 
 
@@ -59,7 +65,7 @@ print("2"*50)
 
 # # # model_id = '/scratch/ahcie-gpu2/openllama-models/MedLLaMA_13B'
 # # model_id="/scratch/ahcie-gpu2/llama-models-meta-hf/Llama-2-13b-hf"
-model_id = "meta-llama/Llama-2-13b-hf"
+# model_id = "meta-llama/Llama-2-13b-hf"
 # model_id = "medalpaca/medalpaca-13b"
 
 # model_id = "/home/zhan1386/shared/common_models/llama/Llama-2-7b-hf"

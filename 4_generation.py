@@ -9,12 +9,18 @@ import sentencepiece
 import accelerate
 import json
 
-number_="5000"
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--number', type=str, default='5000', help='checkpoint number')
+args = parser.parse_args()
+
+# number_="5000"
+number_ = args.number
 
 checkpoint="checkpoint-%s"%number_
 
 input_test_file_name="test_instruction_container.json"
-save_file_name="DDI_llama_13b_test_inference_groundtruth_%s.json"%number_
+save_file_name="test_inference_groundtruth_%s.json"%number_
 
 
 lora_weights="Our_model"+"/"+checkpoint  #FTOpenLM-just_ourdata   SFTOpenLM-with_ourdata_lolly   SFTOpenLM-Dolly15k
@@ -63,7 +69,6 @@ def make_inference(instruction, context = None):
       return results
       # print(results)
       # print("---- NON-INSTRUCT-TUNED-MODEL ----")
-
 
 
 if __name__=="__main__":

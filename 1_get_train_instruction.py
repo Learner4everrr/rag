@@ -3,8 +3,19 @@ import json
 from transformers import AutoTokenizer, AutoModel
 import numpy as np
 
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
+parser.add_argument('--triver', type=str, default='facebook/contriever', help='retriver name')
+args = parser.parse_args()
+
+trainfile = args.trainfile
+triever = args.triever
+
 sentences=[]
-with open("dataset/ade/train.json") as fr:
+with open(trainfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -15,8 +26,8 @@ with open("dataset/ade/train.json") as fr:
 Stored_Embeddings=np.load("train_embedding.npy")
 
 
-tokenizer = AutoTokenizer.from_pretrained('facebook/contriever')
-model = AutoModel.from_pretrained('facebook/contriever')
+tokenizer = AutoTokenizer.from_pretrained(triever)
+model = AutoModel.from_pretrained(triever)
 
 def get_cos_similar(v1: list, v2: list):
     num = float(np.dot(v1, v2))  # 向量点乘
@@ -32,17 +43,19 @@ def mean_pooling(token_embeddings, mask):
     return sentence_embeddings
 
 # instruction = f"You are an excellent linguist. The task is to predict the  relationship between the given head entity and tail entity in a sentence, this relation  must be in ('PREDISPOSES', 'DIAGNOSES', 'INTERACTS_WITH', 'ADMINISTERED_TO', 'ASSOCIATED_WITH', 'STIMULATES', 'AFFECTS', 'PREVENTS', 'USES', 'CAUSES', 'TREATS', 'PROCESS_OF')"
-instruction = f"please extract the triplet from this sentence, the triplet is [head entity, relation, tail entity], \
-the element relation denotes the relationship between head entity and tail entity, I will provide you \
-the definition of the triplet you need to extract, the sentence from where your extract the triplets \
-(head entity, relation, tail_entity) and the output format with examples. the relation must in my \
-predefined relation set: ('effect', 'dosage').  \
-response Format: head entity|relation|tail entity."
+# instruction = f"please extract the triplet from this sentence, the triplet is [head entity, relation, tail entity], \
+# the element relation denotes the relationship between head entity and tail entity, I will provide you \
+# the definition of the triplet you need to extract, the sentence from where your extract the triplets \
+# (head entity, relation, tail_entity) and the output format with examples. the relation must in my \
+# predefined relation set: ('effect', 'dosage').  \
+# response Format: head entity|relation|tail entity."
+with open('instruction.txt', 'r') as file:
+    instruction = file.read()
 
 fw=open("train_instruction_container.json", "w")
 
 h=0
-with open("dataset/ade/train.json") as fr:
+with open(trainfile) as fr:
     for line in fr.readlines():
         line = json.loads(line.strip())
         for li in line:

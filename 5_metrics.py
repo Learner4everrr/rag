@@ -1,6 +1,13 @@
 import json
 import re
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--number', type=str, default='5000', help='checkpoint number')
+args = parser.parse_args()
+number_ = args.number
+
+filename = "test_inference_groundtruth_%s.json"%number_
 # def get_ground():
 #     all_=[]
 #     with open("data/renew_test.json", "r", encoding="utf-8") as fr:
@@ -33,7 +40,7 @@ def calclulate_f1(statics_dict, prefix=""):
 
 
 i=-1
-with open("DDI_llama_13b_test_inference_groundtruth_5000.json", "r", encoding="utf-8") as fr:  # llama2_7b_1000_KNN_0.json   llama2_7b_sample_1000.json
+with open(filename, "r", encoding="utf-8") as fr:  # llama2_7b_1000_KNN_0.json   llama2_7b_sample_1000.json
     for line in fr.readlines():
         line=line.strip()
         line=json.loads(line)
@@ -93,6 +100,12 @@ with open("DDI_llama_13b_test_inference_groundtruth_5000.json", "r", encoding="u
 
 #         # break
 all_metirc_results = calclulate_f1(state_dict, 'all')
+
+with open('metric_result.txt', 'a') as file:
+    # 在文件末尾添加内容
+    file.write("checkpoint:{number_}")
+    file.write(all_metirc_results)
+
 
 print(all_metirc_results)
 

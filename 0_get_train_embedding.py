@@ -2,10 +2,21 @@ import torch
 import json
 from transformers import AutoTokenizer, AutoModel
 import numpy as np
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
+parser.add_argument('--triver', type=str, default='facebook/contriever', help='retriver name')
+args = parser.parse_args()
+
+trainfile = args.trainfile
+triever = args.triever
+
 
 
 sentences=[]
-with open("dataset/ade/train.json") as fr:
+with open(trainfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -13,8 +24,8 @@ with open("dataset/ade/train.json") as fr:
                 sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
 
 
-tokenizer = AutoTokenizer.from_pretrained('facebook/contriever')
-model = AutoModel.from_pretrained('facebook/contriever')
+tokenizer = AutoTokenizer.from_pretrained(triever)
+model = AutoModel.from_pretrained(triever)
 
 
 # Apply tokenizer
