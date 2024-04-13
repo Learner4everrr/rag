@@ -4,7 +4,7 @@ from transformers import AutoTokenizer, AutoModel
 import numpy as np
 
 sentences=[]
-with open("dataset/1_DDI/train_triples.json") as fr:
+with open("dataset/ade/train.json") as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -12,7 +12,7 @@ with open("dataset/1_DDI/train_triples.json") as fr:
                 sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
 
                 
-Stored_Embeddings=np.load("train_embedding_DDI.npy")
+Stored_Embeddings=np.load("train_embedding.npy")
 
 
 tokenizer = AutoTokenizer.from_pretrained('facebook/contriever')
@@ -36,13 +36,13 @@ instruction = f"please extract the triplet from this sentence, the triplet is [h
 the element relation denotes the relationship between head entity and tail entity, I will provide you \
 the definition of the triplet you need to extract, the sentence from where your extract the triplets \
 (head entity, relation, tail_entity) and the output format with examples. the relation must in my \
-predefined relation set: ('effect', 'advise', 'mechanism', 'int').  \
+predefined relation set: ('effect', 'dosage').  \
 response Format: head entity|relation|tail entity."
 
-fw=open("DDI_train_instruction_container.json", "w")
+fw=open("train_instruction_container.json", "w")
 
 h=0
-with open("dataset/1_DDI/train_triples.json") as fr:
+with open("dataset/ade/train.json") as fr:
     for line in fr.readlines():
         line = json.loads(line.strip())
         for li in line:
@@ -90,3 +90,5 @@ with open("dataset/1_DDI/train_triples.json") as fr:
 #                 print()
 #                 print()
 #             print(Dic_)
+
+fw.close()
