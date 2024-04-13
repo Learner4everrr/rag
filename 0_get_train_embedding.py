@@ -5,7 +5,7 @@ import numpy as np
 
 
 sentences=[]
-with open("dataset/1_DDI/train_triples.json") as fr:
+with open("dataset/ade/train.json") as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -47,4 +47,4 @@ for sentence in sentences:
     all_sentence_vector.append(np_embedding)
 
 
-np.save("train_embedding_DDI.npy", all_sentence_vector)
+np.save("train_embedding.npy", all_sentence_vector)
