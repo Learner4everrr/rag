@@ -41,8 +41,8 @@ def prepare_data(path):
 # formatted_dataset = dbricks_15k_dataset_prepared.map(formatting_func)
 
 
-train_path="DDI_train_instruction_container.json"
-test_path="DDI_test_instruction_container.json"
+train_path="train_instruction_container.json"
+test_path="test_instruction_container.json"
 # test_path="test_chuck_instruction_5_llama13b_right.json"
 
 train = prepare_data(train_path)
@@ -109,8 +109,8 @@ supervised_finetuning_trainer = SFTTrainer(
         optim="paged_adamw_8bit",
         fp16=True,
         evaluation_strategy = "steps",
-        eval_steps = 500,
-        save_steps = 500,
+        eval_steps = 1000,
+        save_steps = 1000,
         load_best_model_at_end=True,
         save_strategy='steps',
     ),

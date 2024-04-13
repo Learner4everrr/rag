@@ -13,7 +13,7 @@ number_="5000"
 
 checkpoint="checkpoint-%s"%number_
 
-input_test_file_name="DDI_test_instruction_container.json"
+input_test_file_name="test_instruction_container.json"
 save_file_name="DDI_llama_13b_test_inference_groundtruth_%s.json"%number_
 
 

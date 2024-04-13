@@ -4,7 +4,7 @@ from transformers import AutoTokenizer, AutoModel
 import numpy as np
 
 sentences=[]
-with open("dataset/1_DDI/train_triples.json") as fr:
+with open("dataset/ade/train.json") as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -39,10 +39,10 @@ the definition of the triplet you need to extract, the sentence from where your 
 predefined relation set: ('effect', 'advise', 'mechanism', 'int').  \
 response Format: head entity|relation|tail entity."
 
-fw=open("DDI_test_instruction_container.json", "w")
+fw=open("test_instruction_container.json", "w")
 
 h=0
-with open("dataset/1_DDI/test_triples.json") as fr:
+with open("dataset/ade/test.json") as fr:
     for line in fr.readlines():
         line = json.loads(line.strip())
         for li in line:
@@ -91,3 +91,5 @@ with open("dataset/1_DDI/test_triples.json") as fr:
 #                 print()
             print(Dic_)
             print()
+
+fw.close()
