@@ -117,7 +117,7 @@ supervised_finetuning_trainer = SFTTrainer(
         #evaluation_strategy = "steps",
         #eval_steps = 1000,
         save_steps = 1000,
-        load_best_model_at_end=True,
+        #load_best_model_at_end=True,
         save_strategy='steps',
     ),
     tokenizer=tokenizer,
