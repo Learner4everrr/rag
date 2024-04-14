@@ -5,7 +5,8 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
 parser.add_argument('--testfile', type=str, default='dataset/ade/test.json', help='training file location')
-parser.add_argument('--train', type=bool, default=True, help='Train instruction True')
+# parser.add_argument('--train', type=bool, default=True, help='Train instruction True')
+parser.add_argument('--train', action='store_true') #with --train true, without false
 args = parser.parse_args()
 
 trainfile = args.trainfile
