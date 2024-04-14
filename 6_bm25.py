@@ -1,5 +1,6 @@
 from rank_bm25 import BM25Okapi
 import json
+import numpy as np
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
