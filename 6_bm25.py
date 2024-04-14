@@ -50,7 +50,7 @@ with open(_file) as fr:
             query=sentence_for_LP
             tokenized_query = query.split(" ")
             doc_scores = bm25.get_scores(tokenized_query)
-            max_indices = np.where(doc_scores == doc_scores.max(arr))[0].tolist()
+            max_indices = np.where(doc_scores == np.max(doc_scores))[0].tolist()
             Examples = [corpus[idx] for idx in max_indices]
             # Example=bm25.get_top_n(tokenized_query, corpus, n=1)[0]
             Dic_={}
