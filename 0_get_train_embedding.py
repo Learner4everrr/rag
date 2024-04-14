@@ -29,7 +29,7 @@ model = AutoModel.from_pretrained(triever)
 
 
 # Apply tokenizer
-inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
+# inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
 
 # Compute token embeddings
 # outputs = model(**inputs)

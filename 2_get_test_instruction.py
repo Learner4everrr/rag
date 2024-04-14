@@ -4,9 +4,7 @@ from transformers import AutoTokenizer, AutoModel
 import numpy as np
 
 import argparse
-
 parser = argparse.ArgumentParser()
-
 parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
 parser.add_argument('--testfile', type=str, default='dataset/ade/test.json', help='training file location')
 parser.add_argument('--triever', type=str, default='facebook/contriever', help='retriver name')
