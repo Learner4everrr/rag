@@ -1,8 +1,8 @@
 #!/bin/bash
 
-python 6_bm25.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json --train True
+python 6_bm25.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json --train
 wait
-python 6_bm25.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json --train False
+python 6_bm25.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json
 wait
 
 python 3_train.py --model meta-llama/Llama-2-13b-hf
