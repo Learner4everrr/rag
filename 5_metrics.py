@@ -103,11 +103,16 @@ all_metirc_results = calclulate_f1(state_dict, 'all')
 
 with open('metric_result.txt', 'a') as file:
     # 在文件末尾添加内容
-    file.write("checkpoint:{number_}")
+    strw = "checkpoint:{number_}"
+    pritn(strw)
+    file.write()
+    file.write("\n")
     file.write(str(all_metirc_results))
+    print(all_metirc_results)
+    file.write("\n")
 
 
-print(all_metirc_results)
+
 
 
 """
