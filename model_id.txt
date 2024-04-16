@@ -1,0 +1,7 @@
+meta-llama/Llama-2-13b-hf
+medalpaca/medalpaca-13b
+chaoyi-wu/MedLLaMA_13B
+
+bm25
+ncbi/MedCPT-Query-Encoder
+facebook/contriever
