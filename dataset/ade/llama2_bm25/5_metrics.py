@@ -139,11 +139,11 @@ with open('metric_result.txt', 'a') as file:
     file.write(str(tail_metirc_results))
     print(tail_metirc_results)
     file.write("\n")
-    values = [all_metirc_results['all-prec'],all_metirc_results['all-recall'],all_metirc_results['all-f1'],\
+    values = (all_metirc_results['all-prec'],all_metirc_results['all-recall'],all_metirc_results['all-f1'],\
         head_metirc_results['head-prec'], head_metirc_results['head-recall'], head_metirc_results['head-f1'],\
         relation_metirc_results['relation-prec'], relation_metirc_results['relation-recall'], relation_metirc_results['relation-f1'],\
-        tail_metirc_results['tail-prec'], tail_metirc_results['tail-recall'], tail_metirc_results['tail-f1']]
-    file.write("%.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f"% tuple([100*i for i in values]))
+        tail_metirc_results['tail-prec'], tail_metirc_results['tail-recall'], tail_metirc_results['tail-f1'])*100
+    file.write("%.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f & %.2f"% values)
     file.write("\n\n")
 
 

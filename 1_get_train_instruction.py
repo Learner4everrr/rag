@@ -79,6 +79,7 @@ with open(trainfile) as fr:
 #             max_=arr.argsort()[-1:][::-1][0]
             max_indices = np.where(arr == np.max(arr))[0].tolist()
             Examples = [sentences[idx] for idx in max_indices]
+            Examples = list(set(Examples))
 
 #             Excample=sentences[max_index]
             # print(excamples_)
