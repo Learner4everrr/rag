@@ -12,6 +12,7 @@ import json
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--number', type=str, default='5000', help='checkpoint number')
+parser.add_argument('--model', type=str, default='meta-llama/Llama-2-13b-hf', help='model id')
 args = parser.parse_args()
 
 # number_="5000"
