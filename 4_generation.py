@@ -35,7 +35,9 @@ bnb_config = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
-base_model="meta-llama/Llama-2-13b-hf"
+# base_model="meta-llama/Llama-2-13b-hf"
+
+base_model = args.model
 print(type(lora_weights))
 tokenizer=LlamaTokenizer.from_pretrained(base_model)  #, config=config, cache_dir="./llamacache"
 
