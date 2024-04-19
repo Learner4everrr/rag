@@ -1,3 +1,7 @@
+import sys
+sys.path.append('utilities')
+from model_creator import model_creator
+
 from peft import get_peft_model
 import torch
 import transformers
@@ -39,13 +43,16 @@ bnb_config = BitsAndBytesConfig(
 
 base_model = args.model
 print(type(lora_weights))
-tokenizer=LlamaTokenizer.from_pretrained(base_model)  #, config=config, cache_dir="./llamacache"
 
-model = AutoModelForCausalLM.from_pretrained(
-    base_model,
-    torch_dtype=torch.float16,
-    quantization_config=bnb_config,
-    device_map='auto')
+tokenizer, base_model = model_creator(base_model, bnb_config)
+tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+
+# tokenizer=LlamaTokenizer.from_pretrained(base_model)  #, config=config, cache_dir="./llamacache"
+# model = AutoModelForCausalLM.from_pretrained(
+#     base_model,
+#     torch_dtype=torch.float16,
+#     quantization_config=bnb_config,
+#     device_map='auto')
 
 # model = get_peft_model(model, lora_config)
 model = PeftModel.from_pretrained(
