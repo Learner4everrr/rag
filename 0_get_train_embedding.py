@@ -2,6 +2,7 @@ import torch
 import json
 from transformers import AutoTokenizer, AutoModel
 import numpy as np
+from model_creater import model_creater
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -24,9 +25,9 @@ with open(trainfile) as fr:
                 sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
 
 
-tokenizer = AutoTokenizer.from_pretrained(triever)
-model = AutoModel.from_pretrained(triever)
-
+# tokenizer = AutoTokenizer.from_pretrained(triever)
+# model = AutoModel.from_pretrained(triever)
+tokenizer, model = model_creater(triever)
 
 # Apply tokenizer
 # inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
