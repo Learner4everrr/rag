@@ -1,3 +1,6 @@
+import sys
+sys.path.append('utilities')
+
 import torch
 import json
 from transformers import AutoTokenizer, AutoModel
