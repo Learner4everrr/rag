@@ -44,7 +44,7 @@ bnb_config = BitsAndBytesConfig(
 base_model = args.model
 print(type(lora_weights))
 
-tokenizer, base_model = model_creator(base_model, bnb_config)
+tokenizer, model = model_creator(base_model, bnb_config)
 tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
 # tokenizer=LlamaTokenizer.from_pretrained(base_model)  #, config=config, cache_dir="./llamacache"
