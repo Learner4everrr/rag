@@ -6,7 +6,7 @@ import torch
 import json
 from transformers import AutoTokenizer, AutoModel
 import numpy as np
-from model_creater import model_creater
+from model_creator import model_creator
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -31,7 +31,7 @@ with open(trainfile) as fr:
 
 # tokenizer = AutoTokenizer.from_pretrained(triever)
 # model = AutoModel.from_pretrained(triever)
-tokenizer, model = model_creater(triever)
+tokenizer, model = model_creator(triever)
 
 # Apply tokenizer
 # inputs = tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')

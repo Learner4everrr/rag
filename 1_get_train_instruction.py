@@ -5,7 +5,7 @@ import torch
 import json
 from transformers import AutoTokenizer, AutoModel
 import numpy as np
-from model_creater import model_creater
+from model_creator import model_creator
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -31,7 +31,7 @@ Stored_Embeddings=np.load("train_embedding.npy")
 
 # tokenizer = AutoTokenizer.from_pretrained(triever)
 # model = AutoModel.from_pretrained(triever)
-tokenizer, model = model_creater(triever)
+tokenizer, model = model_creator(triever)
 
 def get_cos_similar(v1: list, v2: list):
     num = float(np.dot(v1, v2))  # 向量点乘

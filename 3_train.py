@@ -1,3 +1,7 @@
+import sys
+sys.path.append('utilities')
+from model_creator import model_creator
+
 # from datasets import load_dataset
 import torch
 import transformers
@@ -85,15 +89,15 @@ bnb_config = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
-base_model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    quantization_config=bnb_config,torch_dtype=torch.float16, device_map='auto',
-)
-
+# base_model = AutoModelForCausalLM.from_pretrained(
+#     model_id,
+#     quantization_config=bnb_config,torch_dtype=torch.float16, device_map='auto',
+# )
+tokenizer, base_model = model_creator(model_id, bnb_config)
 print("3"*50)
 
 
-tokenizer = AutoTokenizer.from_pretrained(model_id)
+# tokenizer = AutoTokenizer.from_pretrained(model_id)
 tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 # tokenizer.add_special_tokens({'end_token': '[END]'})
 
