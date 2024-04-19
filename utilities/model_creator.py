@@ -11,7 +11,7 @@ def model_creator(*args):
 		model_name = args[0]
 		if model_name in auto_list:
 			tokenizer = AutoTokenizer.from_pretrained(model_name)
-			model = AutoModel.from_pretrained(model_name)
+			model = AutoModelForCausalLM.from_pretrained(model_name)
 		elif model_name in llama_list:
 			tokenizer = LlamaTokenizer.from_pretrained(model_name)
 			model = LlamaForCausalLM.from_pretrained(model_name)
