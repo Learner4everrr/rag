@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH -p dos-chs,a100-4,a100-8
+#SBATCH -p dos-chs,a100-4,agsmall,ag2tb,a100-8
 #SBATCH --gres=gpu:a100:1
 #SBATCH --mem=150g
 #SBATCH --time=36:00:00
