@@ -85,7 +85,7 @@ with open(filename, "r", encoding="utf-8") as fr:
         if len(predictions)==2:
             
             predicted_=predictions[1]
-            print(predicted_)
+            # print(predicted_)
             predicte_t=predicted_.split("|")
             if len(predicte_t)==3:
                 ph=predicte_t[0].lower().replace("       "," ").strip()
