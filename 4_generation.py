@@ -12,6 +12,7 @@ from peft import PeftModel
 import sentencepiece
 import accelerate
 import json
+import datetime
 
 import argparse
 parser = argparse.ArgumentParser()
@@ -103,6 +104,9 @@ if __name__=="__main__":
         fw.write(json.dumps(Dic_))
         fw.flush()
         fw.write("\n")
+
+    fw.close()
+    print(datetime.datetime.now())
 
 
 
