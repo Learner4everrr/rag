@@ -57,9 +57,9 @@ def mean_pooling(token_embeddings, mask):
 # (head entity, relation, tail_entity) and the output format with examples. the relation must in my \
 # predefined relation set: ('effect', 'advise', 'mechanism', 'int').  \
 # response Format: head entity|relation|tail entity."
-with open('instruction.txt', 'r') as file:
-    # Read the content of the file
-    instruction = file.read()
+with open('instruction.txt', 'r') as f:
+    # Read the content of the f
+    instruction = f.read()
 
 if 'train.json' in file:
     fw=open("train_instruction_container.json", "w")
