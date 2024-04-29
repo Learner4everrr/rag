@@ -10,17 +10,18 @@ from model_creator import model_creator
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument('--trainfile', type=str, default='dataset/ade/train.json', help='training file location')
-parser.add_argument('--testfile', type=str, default='dataset/ade/test.json', help='training file location')
+parser.add_argument('--indexfile', type=str, default='dataset/ade/train.json', help='training file location')
+parser.add_argument('--file', type=str, default='dataset/ade/test.json', help='training file location')
 parser.add_argument('--triever', type=str, default='facebook/contriever', help='retriver name')
+# parser.add_argument('--trainyes', action='store_true') #with --train true, without false
 args = parser.parse_args()
 
-trainfile = args.trainfile
-testfile = args.testfile
+indexfile = args.indexfile
+file = args.file
 triever = args.triever
 
 sentences=[]
-with open(trainfile) as fr:
+with open(indexfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
@@ -60,11 +61,15 @@ with open('instruction.txt', 'r') as file:
     # Read the content of the file
     instruction = file.read()
 
-
-fw=open("test_instruction_container.json", "w")
+if 'train.json' in file:
+    fw=open("train_instruction_container.json", "w")
+elif 'test.json' in file:
+    fw=open("test_instruction_container.json", "w")
+else:
+    print("Don't know which file to write")
 
 h=0
-with open(testfile) as fr:
+with open(file) as fr:
     for line in fr.readlines():
         line = json.loads(line.strip())
         for li in line:

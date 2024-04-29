@@ -91,7 +91,7 @@ with open(trainfile) as fr:
 
 
             Dic_ = {}
-            Dic_["instruction"] = instruction + ". retrieved sentence: " + " ".join(Examples)
+            Dic_["instruction"] = instruction + " retrieved sentence: " + " ".join(Examples)
             Dic_["context"] = li["text"]
             Dic_["response"] = "|".join(li["triple_list"][0])
 
