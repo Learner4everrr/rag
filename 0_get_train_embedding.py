@@ -26,7 +26,7 @@ with open(trainfile) as fr:
         line=json.loads(line.strip())
         for li in line:
             if li["triple_list"][0][1]!="None":
-                sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
+                sentences.append("context: "+li["text"]) #+ "response: "+ "|".join(li["triple_list"][0]))
 
 
 # tokenizer = AutoTokenizer.from_pretrained(triever)

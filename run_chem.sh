@@ -1,31 +1,26 @@
 #!/bin/bash
 
+#python 6_bm25.py --trainfile dataset/2_chemprot/train.json --testfile dataset/2_chemprot/test.json --train
+wait
+#python 6_bm25.py --trainfile dataset/2_chemprot/train.json --testfile dataset/2_chemprot/test.json
+wait
+
+
 #python 0_get_train_embedding.py --trainfile dataset/2_chemprot/train.json --triever ncbi/MedCPT-Query-Encoder
 #python 0_get_train_embedding.py --trainfile dataset/2_chemprot/train.json --triever facebook/contriever
-#python 0_get_train_embedding.py --trainfile dataset/ade/train.json --triever ncbi/MedCPT-Query-Encoder
-#python 0_get_train_embedding.py --trainfile dataset/ade/train.json --triever facebook/contriever
-#python 0_get_train_embedding.py --trainfile dataset/0_GM-CIHT/train.json --triever ncbi/MedCPT-Query-Encoder
-#python 0_get_train_embedding.py --trainfile dataset/0_GM-CIHT/train.json --triever facebook/contriever
 wait
 
 #python 1_get_train_instruction.py --trainfile dataset/2_chemprot/train.json --triever ncbi/MedCPT-Query-Encoder
 #python 1_get_train_instruction.py --trainfile dataset/2_chemprot/train.json --triever facebook/contriever
-#python 1_get_train_instruction.py --trainfile dataset/ade/train.json --triever ncbi/MedCPT-Query-Encoder
-#python 1_get_train_instruction.py --trainfile dataset/ade/train.json --triever facebook/contriever
-#python 1_get_train_instruction.py --trainfile dataset/0_GM-CIHT/train.json --triever ncbi/MedCPT-Query-Encoder
-#python 1_get_train_instruction.py --trainfile dataset/0_GM-CIHT/train.json --triever facebook/contriever
 wait
 
 #python 2_get_test_instruction.py --trainfile dataset/2_chemprot/train.json --testfile dataset/2_chemprot/test.json --triever ncbi/MedCPT-Query-Encoder
 #python 2_get_test_instruction.py --trainfile dataset/2_chemprot/train.json --testfile dataset/2_chemprot/test.json --triever facebook/contriever
-#python 2_get_test_instruction.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json --triever ncbi/MedCPT-Query-Encoder
-#python 2_get_test_instruction.py --trainfile dataset/ade/train.json --testfile dataset/ade/test.json --triever facebook/contriever
-#python 2_get_test_instruction.py --trainfile dataset/0_GM-CIHT/train.json --testfile dataset/0_GM-CIHT/test.json --triever ncbi/MedCPT-Query-Encoder
-#python 2_get_test_instruction.py --trainfile dataset/0_GM-CIHT/train.json --testfile dataset/0_GM-CIHT/test.json --triever facebook/contriever
 wait
 
-#python 3_train.py --model chaoyi-wu/MedLLaMA_13B
 #python 3_train.py --model meta-llama/Llama-2-13b-hf
+#python 3_train.py --model chaoyi-wu/MedLLaMA_13B
+#python 3_train.py --model medalpaca/medalpaca-13b
 #python 3_train.py --model meta-llama/Meta-Llama-3-8B-Instruct
 wait
 
