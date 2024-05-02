@@ -11,7 +11,7 @@ from model_creator import model_creator
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--indexfile', type=str, default='dataset/ade/train.json', help='training file location')
-parser.add_argument('--file', type=str, default='dataset/ade/test.json', help='training file location')
+parser.add_argument('--file', type=str, default='dataset/ade/test.json', help='input file location')
 parser.add_argument('--instruction', type=str, default='instruction.txt', help='instruction file location')
 parser.add_argument('--triever', type=str, default='facebook/contriever', help='retriver name')
 # parser.add_argument('--trainyes', action='store_true') #with --train true, without false
