@@ -111,8 +111,7 @@ with open(file) as fr:
             Dic_ = {}
             Dic_["instruction"] = instruction + " Example: " + "Example: ".join(Examples)
             Dic_["context"] = li["text"]
-            Dic_["response"] = li['label'] #"|".join(li["triple_list"][0])
-
+            Dic_["response"] = "|".join(li["triple_list"][0]) #li['label'] #
             Dic_["category"] = "triplet extraction"
 
             fw.write(json.dumps(Dic_))
