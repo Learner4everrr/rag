@@ -23,18 +23,18 @@ triever = args.triever
 instruction_file = args.instruction
 
 sentences=[]
-# with open(indexfile) as fr:
-#     for line in fr.readlines():
-#         line=json.loads(line.strip())
-#         for li in line:
-#             if li["triple_list"][0][1]!="None":
-#                 sentences.append("context: "+li["text"]+ "response: "+ "|".join(li["triple_list"][0]))
-
 with open(indexfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
-            sentences.append("context: "+li["text"]+ "response: "+ li['label'] )
+            if li["triple_list"][0][1]!="None":
+                sentences.append("context: "+li["text"]+ "response: "+ "|".join(li["triple_list"][0]))
+
+# with open(indexfile) as fr:
+#     for line in fr.readlines():
+#         line=json.loads(line.strip())
+#         for li in line:
+#             sentences.append("context: "+li["text"]+ "response: "+ li['label'] )
 
                 
 Stored_Embeddings=np.load("train_embedding.npy")
@@ -109,7 +109,7 @@ with open(file) as fr:
 
 
             Dic_ = {}
-            Dic_["instruction"] = instruction + " Retrieved sentence: " + "Retrieved sentence:: ".join(Examples)
+            Dic_["instruction"] = instruction + " Example: " + "Example: ".join(Examples)
             Dic_["context"] = li["text"]
             Dic_["response"] = li['label'] #"|".join(li["triple_list"][0])
 

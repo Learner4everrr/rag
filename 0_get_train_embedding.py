@@ -1,7 +1,5 @@
 import sys
 sys.path.append('utilities')
-
-
 import torch
 import json
 from transformers import AutoTokenizer, AutoModel
@@ -19,20 +17,19 @@ trainfile = args.trainfile
 triever = args.triever
 
 
-
 sentences=[]
-# with open(trainfile) as fr:
-#     for line in fr.readlines():
-#         line=json.loads(line.strip())
-#         for li in line:
-#             if li["triple_list"][0][1]!="None":
-#                 sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
-
 with open(trainfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
-            sentences.append("context: "+li["text"]+ "response: "+ li['label'] )
+            if li["triple_list"][0][1]!="None":
+                sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
+
+# with open(trainfile) as fr:
+#     for line in fr.readlines():
+#         line=json.loads(line.strip())
+#         for li in line:
+#             sentences.append("context: "+li["text"]+ "response: "+ li['label'] )
 
 
 # tokenizer = AutoTokenizer.from_pretrained(triever)
@@ -60,7 +57,7 @@ l=-1
 for sentence in sentences:
     l=l+1
     print(l)
-    inputs = tokenizer(sentence, padding=True, truncation=True, return_tensors='pt')
+    inputs = tokenizer(sentence, padding=True, truncation=True, return_tensors='pt', max_length=512)
     # Compute token embeddings
     outputs = model(**inputs)
     # Mean pooling
