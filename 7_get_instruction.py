@@ -12,6 +12,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--indexfile', type=str, default='dataset/ade/train.json', help='training file location')
 parser.add_argument('--file', type=str, default='dataset/ade/test.json', help='training file location')
+parser.add_argument('--instruction', type=str, default='instruction.txt', help='instruction file location')
 parser.add_argument('--triever', type=str, default='facebook/contriever', help='retriver name')
 # parser.add_argument('--trainyes', action='store_true') #with --train true, without false
 args = parser.parse_args()
@@ -19,6 +20,7 @@ args = parser.parse_args()
 indexfile = args.indexfile
 file = args.file
 triever = args.triever
+instruction_file = args.instruction
 
 sentences=[]
 with open(indexfile) as fr:
@@ -57,7 +59,7 @@ def mean_pooling(token_embeddings, mask):
 # (head entity, relation, tail_entity) and the output format with examples. the relation must in my \
 # predefined relation set: ('effect', 'advise', 'mechanism', 'int').  \
 # response Format: head entity|relation|tail entity."
-with open('instruction.txt', 'r') as f:
+with open(instruction_file, 'r') as f:
     # Read the content of the f
     instruction = f.read()
 
