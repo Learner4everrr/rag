@@ -111,7 +111,7 @@ with open(file) as fr:
             Dic_ = {}
             Dic_["instruction"] = instruction + " Retrieved sentence: " + "Retrieved sentence:: ".join(Examples)
             Dic_["context"] = li["text"]
-            Dic_["response"] = "|".join(li["triple_list"][0])
+            Dic_["response"] = li['label'] #"|".join(li["triple_list"][0])
 
             Dic_["category"] = "triplet extraction"
 
