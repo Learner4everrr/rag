@@ -10,4 +10,4 @@
 conda activate myenv
 module load cuda/12.0
 nvidia-smi
-bash run_negative_awareness.sh > result
+bash run.sh > result
