@@ -21,12 +21,18 @@ triever = args.triever
 
 
 sentences=[]
+# with open(trainfile) as fr:
+#     for line in fr.readlines():
+#         line=json.loads(line.strip())
+#         for li in line:
+#             if li["triple_list"][0][1]!="None":
+#                 sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
+
 with open(trainfile) as fr:
     for line in fr.readlines():
         line=json.loads(line.strip())
         for li in line:
-            if li["triple_list"][0][1]!="None":
-                sentences.append("context: "+li["text"] + "response: "+ "|".join(li["triple_list"][0]))
+            sentences.append("context: "+li["text"]+ "response: "+ li['label'] )
 
 
 # tokenizer = AutoTokenizer.from_pretrained(triever)
