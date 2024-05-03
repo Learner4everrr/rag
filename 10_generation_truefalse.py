@@ -75,7 +75,7 @@ def make_inference(instruction, context = None):
   # model.zero()
   model.eval()
   with torch.no_grad():
-      outputs = model.generate(**inputs, max_new_tokens=50)
+      outputs = model.generate(**inputs, max_new_tokens=10)
       results=(tokenizer.decode(outputs[0], skip_special_tokens=True))
       return results
       # print(results)

@@ -16,29 +16,18 @@ wait
 #python 4_generation.py --model chaoyi-wu/MedLLaMA_13B --number 1000
 #python 4_generation.py --model meta-llama/Llama-2-13b-hf --number 1000
 #python 4_generation.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 1000
-python 5_metrics.py --number 1000
 wait
 
-#python 4_generation.py --model chaoyi-wu/MedLLaMA_13B --number 2000
-#python 4_generation.py --model meta-llama/Llama-2-13b-hf --number 2000
-#python 4_generation.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 2000
-python 5_metrics.py --number 2000
+python 9_metrics_reject_rate.py --number 1000
+
+#python 10_generation_truefalse.py --model chaoyi-wu/MedLLaMA_13B --number 1000 --file true_noise.json
+#python 10_generation_truefalse.py --model meta-llama/Llama-2-13b-hf --number 1000 --file true_noise.json
+#python 10_generation_truefalse.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 1000 --file true_noise.json
 wait
 
-#python 4_generation.py --model chaoyi-wu/MedLLaMA_13B --number 3000
-#python 4_generation.py --model meta-llama/Llama-2-13b-hf --number 3000
-#python 4_generation.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 3000
-python 5_metrics.py --number 3000
-wait
+#python 10_generation_truefalse.py --model chaoyi-wu/MedLLaMA_13B --number 1000 --file fake_noise.json
+#python 10_generation_truefalse.py --model meta-llama/Llama-2-13b-hf --number 1000 --file fake_noise.json
+#python 10_generation_truefalse.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 1000 --file fake_noise.json
 
-#python 4_generation.py --model chaoyi-wu/MedLLaMA_13B --number 4000
-#python 4_generation.py --model meta-llama/Llama-2-13b-hf --number 4000
-#python 4_generation.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 4000
-python 5_metrics.py --number 4000
-wait
-
-#python 4_generation.py --model chaoyi-wu/MedLLaMA_13B --number 5000
-#python 4_generation.py --model meta-llama/Llama-2-13b-hf --number 5000
-#python 4_generation.py --model meta-llama/Meta-Llama-3-8B-Instruct --number 5000
-python 5_metrics.py --number 5000
+python 11_metric_na_rate.py
 wait
