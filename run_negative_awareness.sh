@@ -8,8 +8,8 @@
 #python 7_get_instruction.py --indexfile dataset/2_chemprot/noise_robustness/train_100.json --file dataset/2_chemprot/test.json --triever facebook/contriever --instruction instruction/instruction_chemprotna.txt
 
 
-#python 0_get_train_embedding.py --trainfile dataset/0_GM-CIHT/noise_robustness/train_20.json --triever ncbi/MedCPT-Query-Encoder
-#python 7_get_instruction.py --indexfile dataset/0_GM-CIHT/noise_robustness/train_20.json --file dataset/0_GM-CIHT/test.json --triever ncbi/MedCPT-Query-Encoder --instruction instruction/instruction_gmcihtna.txt
+#python 0_get_train_embedding.py --trainfile dataset/0_GM-CIHT/noise_robustness/train_100.json --triever ncbi/MedCPT-Query-Encoder
+#python 7_get_instruction.py --indexfile dataset/0_GM-CIHT/noise_robustness/train_100.json --file dataset/0_GM-CIHT/test.json --triever ncbi/MedCPT-Query-Encoder --instruction instruction/instruction_gmcihtna.txt
 wait
 
 

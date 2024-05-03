@@ -25,8 +25,8 @@ def calclulate_f1(statics_dict, prefix=""):
     return {prefix+"-prec": prec, prefix+"-recall": recall, prefix+"-f1": f1}
 
 
-fake_noise = 0
-true_noise = 0
+fake_noise = []
+true_noise = []
 # triple extraction
 state_dict = {"p": 0, "c": 0, "g": 0}
 state_dict_head = {"p": 0, "c": 0, "g": 0}
@@ -105,24 +105,19 @@ with open(filename, "r", encoding="utf-8") as fr:
 
 
         ## reject rate
-        if P == gold_triples:
-            fake_noise += 1
-        else:
-            true_noise += 1
+        example = line["predicted"].split('Example:')[1].split('\n\n### Input:')[0]
+        context_ = line["predicted"].split('\n\n### Input: \n')[1].split('\n\n### Response:')[0]
+        if example and context_:
+            if P == gold_triples:
+                fake_noise.append((example,context_))
+            else:
+                true_noise.append((example,context_))
 
 
 all_metirc_results = calclulate_f1(state_dict, 'all')
 head_metirc_results = calclulate_f1(state_dict_head, 'head')
 relation_metirc_results = calclulate_f1(state_dict_relation, 'relation')
 tail_metirc_results = calclulate_f1(state_dict_tail, 'tail')
-
-
-
-
-
-
-
-
 
 with open('metric_result.txt', 'a') as file:
     # 在文件末尾添加内容
@@ -150,7 +145,28 @@ with open('metric_result.txt', 'a') as file:
     file.write("\n\n")
 
 
+instruction_ = "Please determine whether the retrieved example constitutes negative information. If it is negative, please output False; if it is not negative, please output True"
 
+with open('true_noise.json', 'a') as fw:
+    for example,context in true_noise:
+        Dic_ = {}
+        Dic_["instruction"] = instruction_
+        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for the "+context
+        Dic_["response"] = "True-The retrieved example is not a negative example"
+        Dic_["category"] = "True-False"
+        fw.write(json.dumps(Dic_))
+        fw.write("\n")
+
+
+with open('fake_noise.json', 'a') as fw:
+    for example,context in fake_noise:
+        Dic_ = {}
+        Dic_["instruction"] = instruction_
+        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for the "+context
+        Dic_["response"] = "True-The retrieved example is not a negative example"
+        Dic_["category"] = "True-False"
+        fw.write(json.dumps(Dic_))
+        fw.write("\n")
 
 
 """
