@@ -37,10 +37,10 @@ with open('metric_result.txt', 'a') as file:
     print('true_awareness_rate:', true_awareness_rate)
     print('fake_awareness_rate:', fake_awareness_rate)
     file.write('true_awareness_rate:')
-    file.write(true_awareness_rate)
+    file.write(str(true_awareness_rate))
     file.write("\n")
     file.write('fake_awareness_rate:')
-    file.write(fake_awareness_rate)
+    file.write(str(fake_awareness_rate))
     file.write("\n")
 
 
