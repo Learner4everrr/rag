@@ -105,7 +105,10 @@ with open(filename, "r", encoding="utf-8") as fr:
 
 
         ## reject rate
-        example = line["predicted"].split('Example:')[1].split('\n\n### Input:')[0]
+        sen_tri = line["predicted"].split('Example: context: ')[1].split('\n\n### Input:')[0].split('response: ')
+        sentence = sen_tri[0]
+        triplet = sen_tri[1]
+        example = "The triplet of ({sentence}) is ({triplet})"
         context_ = line["predicted"].split('\n\n### Input: \n')[1].split('\n\n### Response:')[0]
         if example and context_:
             if P == gold_triples:
@@ -151,7 +154,7 @@ with open('true_noise.json', 'a') as fw:
     for example,context in true_noise:
         Dic_ = {}
         Dic_["instruction"] = instruction_
-        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for the "+context
+        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for ({context})"
         Dic_["response"] = "True-The retrieved example is not a negative example"
         Dic_["category"] = "True-False"
         fw.write(json.dumps(Dic_))
@@ -162,7 +165,7 @@ with open('fake_noise.json', 'a') as fw:
     for example,context in fake_noise:
         Dic_ = {}
         Dic_["instruction"] = instruction_
-        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for the "+context
+        Dic_["context"] =  "if the retrieved document: ("+example+") is  the negative example for ({context})"
         Dic_["response"] = "True-The retrieved example is not a negative example"
         Dic_["category"] = "True-False"
         fw.write(json.dumps(Dic_))
